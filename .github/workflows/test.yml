@@ -1,0 +1,26 @@
+name: Package
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test formula
+        shell: bash
+        run: |
+          if [[ ! -f Formula/lazyxcode.rb ]]; then exit 0; fi
+          brew tap rigbyworks/tap
+          mkdir -p "$(brew --repository rigbyworks/tap)/Formula"
+          cp Formula/lazyxcode.rb "$(brew --repository rigbyworks/tap)/Formula/lazyxcode.rb"
+          brew style rigbyworks/tap/lazyxcode
+          brew audit --strict --online rigbyworks/tap/lazyxcode
+          brew install --build-from-source rigbyworks/tap/lazyxcode
+          brew test rigbyworks/tap/lazyxcode
+          brew reinstall --build-from-source rigbyworks/tap/lazyxcode
+          brew test rigbyworks/tap/lazyxcode
+          brew uninstall lazyxcode
