@@ -14,6 +14,7 @@ jobs:
         shell: bash
         run: |
           if [[ ! -f Formula/lazyxcode.rb ]]; then exit 0; fi
+          brew trust --formula rigbyworks/tap/lazyxcode
           brew tap rigbyworks/tap
           mkdir -p "$(brew --repository rigbyworks/tap)/Formula"
           cp Formula/lazyxcode.rb "$(brew --repository rigbyworks/tap)/Formula/lazyxcode.rb"
