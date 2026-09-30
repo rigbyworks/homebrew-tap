@@ -1,16 +1,17 @@
 class Lazyxcode < Formula
   desc "Terminal interface for building, running, and testing Xcode projects"
   homepage "https://github.com/rigbyworks/lazyxcode"
-  url "https://github.com/rigbyworks/lazyxcode/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "11fe5307a2f66c3197a4d24bb6198cfed647eb90d9dc7015943aa8ec196dcebd"
+  url "https://github.com/rigbyworks/lazyxcode/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "3dcae41ee3d5d78f0322ff5781806377995bfab94de6f3e91ea58e6b06ec1253"
   license "MIT"
 
-  depends_on "go" => :build
+  depends_on xcode: ["27.0", :build]
   depends_on arch: :arm64
   depends_on macos: :sequoia
 
   def install
-    system "go", "build", *std_go_args(ldflags: "-X main.version=v#{version}")
+    system "make", "build", "VERSION=v#{version}"
+    bin.install "lazyxcode"
   end
 
   def caveats
