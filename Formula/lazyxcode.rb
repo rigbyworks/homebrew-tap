@@ -1,8 +1,8 @@
 class Lazyxcode < Formula
   desc "Terminal interface for building, running, and testing Xcode projects"
   homepage "https://github.com/rigbyworks/lazyxcode"
-  url "https://github.com/rigbyworks/lazyxcode/archive/refs/tags/v0.2.1.tar.gz"
-  sha256 "9f5168c0541aec2b5ec825b05601cd2449502a8f06c6accc619192f1b7eac367"
+  url "https://github.com/rigbyworks/lazyxcode/archive/refs/tags/v0.2.2.tar.gz"
+  sha256 "44b79d8e65d7b887199323a979b44bb35322154836e57b17df7061bdce56efca"
   license "MIT"
 
   depends_on xcode: ["27.0", :build]
